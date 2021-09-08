@@ -3,12 +3,12 @@ import UserController from '../controllers/UserController'
 
 const userRouter = Router()
 
-userRouter.get('/', async (request, response) => {
+/*userRouter.get('/', async (request, response) => {
 
     const user = await UserController.index()
     return response.status(200).json(user)
 
-})
+})*/
 
 userRouter.post('/', async (request, response) => {
 
