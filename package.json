@@ -1,8 +1,12 @@
 {
-  "name": "backend",
+  "name": "marcellaBack",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",
+  "author": "Marcella Amorim S. Ananias",
+  "engines": {
+    "node": "v12.15.0"
+  },
   "scripts": {
     "dev:server": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts"
   },
