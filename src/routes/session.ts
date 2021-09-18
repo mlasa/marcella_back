@@ -6,11 +6,14 @@ const sessionRouter = Router()
 sessionRouter.post('/', async (request, response) => {
     const { password, username, email } = request.body
 
-    await SessionController.create({
+    const session = await SessionController.create({
         password, username, email
     });
 
-    return response.status(204).send('Rota de login')
+    if (!session)
+        return response.status(401).send()
+
+    return response.status(200).json(session)
 })
 
 export default sessionRouter

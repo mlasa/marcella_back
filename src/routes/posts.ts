@@ -1,7 +1,10 @@
 import { Router } from 'express'
 import postsController from '../controllers/PostsController'
+import verifyAuthentication from '../middlewares/verifyAuthentication';
 
 const postsRouter = Router();
+
+postsRouter.use(verifyAuthentication)
 
 postsRouter.get('/', async (request, response) => {
     const { limit, page, fields, orderBy, sortBy, keyWord } = request.query

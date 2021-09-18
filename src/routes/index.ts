@@ -5,12 +5,15 @@ import sessionRouter from './session'
 import userRouter from './user'
 
 const router = Router()
-
+/*
+  Essa é uma rota para testar se a API está funcionando.
+*/
 router.get('/', async (request, response) => {
 
   return response.status(200).json({ apiWorking: 'Tudo suave' })
 })
 
+// Rotas divididas por módulos
 router.use('/posts', postsRouter)
 router.use('/profile', profileRouter)
 router.use('/session', sessionRouter)

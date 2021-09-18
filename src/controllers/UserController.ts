@@ -17,7 +17,6 @@ async function index() {
 async function create(data: User) {
     const { username, name, email, password } = data
 
-    console.log('Vou encriptar')
     const encryptedPassword = await encrypt(password)
 
     const userCreated = await User.create({

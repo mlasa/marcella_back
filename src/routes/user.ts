@@ -3,6 +3,7 @@ import UserController from '../controllers/UserController'
 
 const userRouter = Router()
 
+//Implementar jwt authentication e somente após isso liberar essa rota
 /*userRouter.get('/', async (request, response) => {
 
     const user = await UserController.index()
