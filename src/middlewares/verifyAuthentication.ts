@@ -16,7 +16,7 @@ export default function verifyAuthentication(
     request: Request,
     response: Response,
     next: NextFunction
-): void {
+): Response | NextFunction {
     const authorization = request.headers.authorization
 
     if (!authorization) return response.status(401).send("Esta ação exige autenticação")
