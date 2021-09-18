@@ -27,6 +27,7 @@ async function create(data: SessionDTO) {
         const token = await generateAuthenticationToken(user)
         return user
     }
+    else return null
 
 }
 

@@ -1,7 +1,10 @@
 import { Router } from 'express'
 import profileController from '../controllers/ProfileController'
+import verifyAuthentication from '../middlewares/verifyAuthentication'
 
 const profileRouter = Router()
+
+profileRouter.use(verifyAuthentication)
 
 profileRouter.get('/', async (request, response) => {
 
