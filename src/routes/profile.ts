@@ -4,14 +4,14 @@ import verifyAuthentication from '../middlewares/verifyAuthentication'
 
 const profileRouter = Router()
 
-profileRouter.use(verifyAuthentication)
-
 profileRouter.get('/', async (request, response) => {
 
     const profile = await profileController.index()
     return response.status(200).json(profile)
 
 })
+
+profileRouter.use(verifyAuthentication)
 
 profileRouter.post('/', async (request, response) => {
 
