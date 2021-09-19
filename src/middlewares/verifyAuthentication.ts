@@ -12,8 +12,12 @@ interface ITokenPaylod {
     sub: string;
 }
 
+interface IRequest extends Request {
+    user: { id: string };
+}
+
 export default function verifyAuthentication(
-    request: Request,
+    request: IRequest,
     response: Response,
     next: NextFunction
 ): Response | NextFunction {
@@ -28,7 +32,8 @@ export default function verifyAuthentication(
         const { sub } = decoded as ITokenPaylod
         request.user = { id: sub } // Vai adicionar na request os dados do usuário autenticado
 
-        return next()
+        //return next()
+        next()
     } catch (err) {
         return response.status(401).send('Acão requer autenticação')
     }
