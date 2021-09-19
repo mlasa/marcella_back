@@ -16,7 +16,9 @@ async function create(data: SessionDTO) {
         ]
     })
 
-    const user = userFound.toJSON()
+    let user;
+    if (userFound)
+        user = userFound.toJSON()
 
     if (!user)
         return null
@@ -25,7 +27,9 @@ async function create(data: SessionDTO) {
 
     if (passwordIsEqual) {
         const token = await generateAuthenticationToken(user)
-        return user
+
+        if (token && user)
+            return { token, user }
     }
     else return null
 
