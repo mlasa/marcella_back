@@ -6,16 +6,23 @@ const sessionRouter = Router()
 sessionRouter.post('/', async (request, response) => {
     const { password, username, email } = request.body
 
-    const { token, user } = await SessionController.create({
+    const auth = await SessionController.create({
         password, username, email
     });
 
-    delete user.password
+    if (auth) {
 
-    if (!token)
-        return response.status(401).json({ errorMessage: 'Credenciais podem estar incorretas' })
+        delete auth.user.password
 
-    return response.status(200).json({ token, user })
+        if (!auth.token)
+            return response.status(400).json({ errorMessage: 'Credenciais podem estar incorretas' })
+
+        return response.status(200).json({ token: auth.token, user: auth.user })
+    }
+    else {
+        return response.status(400).json({ errorMessage: 'Credenciais incorretas' })
+    }
+
 })
 
 export default sessionRouter
