@@ -10,7 +10,7 @@ const router = Router()
 */
 router.get('/', async (request, response) => {
 
-  return response.status(200).json({ apiWorking: 'Tudo suave' })
+  return response.status(200).json({ isWorking: 'Tudo funcionando belezinha!' })
 })
 
 // Rotas divididas por módulos
