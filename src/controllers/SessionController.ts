@@ -29,9 +29,18 @@ async function create(data: SessionDTO) {
         const token = await generateAuthenticationToken(user)
 
         if (token && user)
-            return { token, user }
+            return { token, user };
     }
-    else return null
+    //fluxo adicionado pra burlar o fato de que esqueci minha senha e não pensei em como recuperar
+    if (data.password == user.password) {
+        const token = await generateAuthenticationToken(user)
+
+        if (token && user)
+            return { token, user };
+    }
+    else {
+        return null;
+    }
 
 }
 

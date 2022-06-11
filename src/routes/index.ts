@@ -9,8 +9,7 @@ const router = Router()
   Essa é uma rota para testar se a API está funcionando.
 */
 router.get('/', async (request, response) => {
-
-  return response.status(200).json({ isWorking: 'Tudo funcionando belezinha!' })
+  return response.status(200).json({ funcionando: ' tudo belezinha!' })
 })
 
 // Rotas divididas por módulos
