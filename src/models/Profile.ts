@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 const ProfileSchema = new Schema({
+    _id: String,
     name: {
         type: String,
     },

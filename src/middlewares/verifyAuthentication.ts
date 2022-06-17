@@ -23,18 +23,24 @@ export default function verifyAuthentication(
 ): Response | NextFunction {
     const authorization = request.headers.authorization
 
-    if (!authorization) return response.status(401).send("Esta ação exige autenticação")
+    if (!authorization) {
+        console.log('authorization: ', authorization);
+        return response.status(401).send("Essa rota exige autenticação")
+    }
+
 
     const [, token] = authorization.split(' ')
 
     try {
         const decoded = verify(token, AUTH_CONFIG.secret)
+        console.log("decoded", decoded);
         const { sub } = decoded as ITokenPaylod
-        request.user = { id: sub } // Vai adicionar na request os dados do usuário autenticado
+        request.user = { _id: sub } // Vai adicionar na request os dados do usuário autenticado
 
         //return next()
         next()
     } catch (err) {
-        return response.status(401).send('Acão requer autenticação')
+        console.log('Error: ', err);
+        return response.status(401).send('Token inválido')
     }
 }

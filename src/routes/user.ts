@@ -15,6 +15,12 @@ userRouter.post('/', async (request, response) => {
 
     const { name, username, email, password } = request.body
 
+    /* 
+        TODO
+        - Verificar se o e-mail cadastrado
+        - Verificar se o username escolhido já está sendo usado
+     */
+
     const user = await UserController.create({
         name, username, email, password
     })

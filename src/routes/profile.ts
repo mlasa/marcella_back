@@ -25,9 +25,11 @@ profileRouter.post('/', async (request, response) => {
 })
 
 profileRouter.put('/:id', async (request, response) => {
+    console.log('\n\n request: ', request.body);
 
     const { name, description, tags } = request.body
-    const { id } = request.query
+    const { id } = request.params
+    console.log('id: ', request.params);
 
     const profile = await profileController.update(id + '', {
         name, description, tags

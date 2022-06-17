@@ -18,10 +18,13 @@ async function create(data: ProfileDTO) {
 }
 
 async function update(id: String, data: ProfileDTO) {
-    const profile = await Profile.findById(id)
-    if (!profile)
+    console.log('cheguei: ', id);
+    const profile = await Profile.findById(id); //                 <-  TODO: corrigir problema para encontrar o dado pelo ID
+    console.log('profile: ', profile);                       // Não encontra o ID certo porque no banco está nesse formato
+    if (!profile)                                               // ObjectId("6137aeee08f6f04ce0e47f85")
         return null
 
+    console.log('perfil: ', data);
     await Profile.updateOne({ _id: id }, data)
 
     return await Profile.findById(id)
