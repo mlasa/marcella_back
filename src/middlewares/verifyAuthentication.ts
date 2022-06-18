@@ -13,7 +13,7 @@ interface ITokenPaylod {
 }
 
 interface IRequest extends Request {
-    user: { id: string };
+    user: { _id: string };
 }
 
 export default function verifyAuthentication(
