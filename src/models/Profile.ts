@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose'
 
 const ProfileSchema = new Schema({
-    _id: String,
     name: {
         type: String,
     },
@@ -9,6 +8,10 @@ const ProfileSchema = new Schema({
     description: {
         type: String,
     },
+    job: {
+        type: String,
+        required: false
+    }
 }, { collection: 'profile', strict: false })
 
 const Profile = model('Profile', ProfileSchema)

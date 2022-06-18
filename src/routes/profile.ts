@@ -15,7 +15,7 @@ profileRouter.use(verifyAuthentication)
 
 profileRouter.post('/', async (request, response) => {
 
-    const { name, description, tags } = request.body
+    const { name, description, tags, job } = request.body
 
     const profile = await profileController.create({
         name, description, tags
@@ -24,15 +24,14 @@ profileRouter.post('/', async (request, response) => {
 
 })
 
-profileRouter.put('/:id', async (request, response) => {
-    console.log('\n\n request: ', request.body);
 
-    const { name, description, tags } = request.body
+profileRouter.put('/:id', async (request, response) => {
+
+    const { name, description, tags, job } = request.body
     const { id } = request.params
-    console.log('id: ', request.params);
 
     const profile = await profileController.update(id + '', {
-        name, description, tags
+        name, description, tags, job
     })
     return response.status(200).json(profile)
 

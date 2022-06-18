@@ -1,38 +1,61 @@
 import Profile from '../models/Profile'
 
 interface ProfileDTO {
-    name: String;
-    tags: String[];
-    description: String;
+	name: string;
+	tags: string[];
+	description: string;
+	job?: string;
+}
+
+interface UpdateObject {
+	tags?: Array<string>;
+	name?: string;
+	description?: string;
+	job?: string;
 }
 
 async function index() {
-    const profile = await Profile.find()
+	const profile = await Profile.find()
 
-    return profile
+	return profile
 }
 
 async function create(data: ProfileDTO) {
-    const profile = await Profile.create(data)
-    return profile || null
+	const profile = await Profile.create(data)
+	return profile || null
 }
 
 async function update(id: String, data: ProfileDTO) {
-    console.log('cheguei: ', id);
-    const profile = await Profile.findById(id); //                 <-  TODO: corrigir problema para encontrar o dado pelo ID
-    console.log('profile: ', profile);                       // Não encontra o ID certo porque no banco está nesse formato
-    if (!profile)                                               // ObjectId("6137aeee08f6f04ce0e47f85")
-        return null
 
-    console.log('perfil: ', data);
-    await Profile.updateOne({ _id: id }, data)
+	const profile = await Profile.findById(id); //                 <-  DONE: corrigir problema para encontrar o dado pelo ID
 
-    return await Profile.findById(id)
+	if (!profile)                                               // ObjectId("6137aeee08f6f04ce0e47f85")
+		return null
+
+
+	const updateObject: UpdateObject = {};
+
+	if (data.tags) {
+		updateObject.tags = data.tags;
+	}
+	if (data.description) {
+		updateObject.description = data.description;
+	}
+	if (data.name) {
+		updateObject.name = data.name;
+	}
+	if (data.job) {
+		updateObject.job = data.job;
+	}
+
+	await Profile.updateOne({ _id: id }, updateObject)
+
+	return await Profile.findById(id)
 }
 
 async function remove(id: String) {
 
-    await Profile.deleteOne({ _id: id })
+	await Profile.deleteOne({ _id: id })
 }
 
 export default { create, index, remove, update }

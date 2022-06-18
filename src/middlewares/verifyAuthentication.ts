@@ -33,7 +33,7 @@ export default function verifyAuthentication(
 
     try {
         const decoded = verify(token, AUTH_CONFIG.secret)
-        console.log("decoded", decoded);
+
         const { sub } = decoded as ITokenPaylod
         request.user = { _id: sub } // Vai adicionar na request os dados do usuário autenticado
 
