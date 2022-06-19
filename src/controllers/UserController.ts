@@ -2,10 +2,14 @@ import User from '../models/User'
 import { encrypt } from '../utils/libs/Bcrypt'
 
 interface IUser {
-    username: String;
-    name: String;
-    email: String;
-    password: String;
+    username: string;
+    name: string;
+    email: string;
+    password: string;
+}
+interface UpdateObject {
+    username?: string;
+    name?: string;
 }
 
 async function index() {
