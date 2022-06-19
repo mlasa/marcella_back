@@ -1,7 +1,7 @@
 import User from '../models/User'
 import { encrypt } from '../utils/libs/Bcrypt'
 
-interface User {
+interface IUser {
     username: String;
     name: String;
     email: String;
@@ -14,7 +14,7 @@ async function index() {
     return profile
 }
 
-async function create(data: User) {
+async function create(data: IUser) {
     const { username, name, email, password } = data
 
     const encryptedPassword = await encrypt(password)
@@ -30,4 +30,26 @@ async function create(data: User) {
     return userCreated || null
 }
 
-export default { create, index }
+async function update(id: String, data: Omit<IUser, "email" | "password">) {
+
+    const user = await User.findById(id); //                 <-  DONE: corrigir problema para encontrar o dado pelo ID
+
+    if (!user)                                               // ObjectId("6137aeee08f6f04ce0e47f85")
+        return null
+
+
+    const updateObject: UpdateObject = {};
+
+    if (data.username) {
+        updateObject.username = data.username;
+    }
+    if (data.name) {
+        updateObject.name = data.name;
+    }
+
+    await User.updateOne({ _id: id }, updateObject)
+
+    return user;
+}
+
+export default { create, index, update }

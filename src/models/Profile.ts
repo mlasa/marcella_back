@@ -3,10 +3,15 @@ import { Schema, model } from 'mongoose'
 const ProfileSchema = new Schema({
     name: {
         type: String,
+        required: true
     },
-    tags: [String],
+    tags: {
+        type: [String],
+        required: false
+    },
     description: {
         type: String,
+        required: false
     },
     job: {
         type: String,

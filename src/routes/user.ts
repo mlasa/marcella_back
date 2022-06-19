@@ -28,4 +28,16 @@ userRouter.post('/', async (request, response) => {
 
 })
 
+userRouter.put('/:id', async (request, response) => {
+
+    const { name, username } = request.body
+    const { id } = request.params
+
+    const profile = await UserController.update(id + '', {
+        name, username
+    })
+    return response.status(200).json(profile)
+
+})
+
 export default userRouter
