@@ -18,7 +18,7 @@ profileRouter.post('/', async (request, response) => {
     const { name, description, tags, job } = request.body
 
     const profile = await profileController.create({
-        name, description, tags
+        name, description, tags, job
     })
     return response.status(200).json(profile)
 

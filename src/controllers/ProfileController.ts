@@ -50,7 +50,8 @@ async function update(id: String, data: ProfileDTO) {
 
 	await Profile.updateOne({ _id: id }, updateObject)
 
-	return await Profile.findById(id)
+	//return await Profile.findById(id)
+	return profile;
 }
 
 async function remove(id: String) {
