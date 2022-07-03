@@ -27,12 +27,9 @@ profileRouter.post('/', async (request, response) => {
 
 profileRouter.put('/:id', async (request, response) => {
 
-    const { name, description, tags, job } = request.body
     const { id } = request.params
 
-    const profile = await profileController.update(id + '', {
-        name, description, tags, job
-    })
+    const profile = await profileController.update(id + '', request.body);
     return response.status(200).json(profile)
 
 })

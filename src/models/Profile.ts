@@ -16,7 +16,12 @@ const ProfileSchema = new Schema({
     job: {
         type: String,
         required: false
-    }
+    },
+    experiences: {
+        type: [Object],
+        required: false
+    },
+    interests: Object
 }, { collection: 'profile', strict: false })
 
 const Profile = model('Profile', ProfileSchema)

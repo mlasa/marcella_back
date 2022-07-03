@@ -5,6 +5,8 @@ interface ProfileDTO {
 	tags: string[];
 	description: string;
 	job?: string;
+	experiences?: Array<Object>;
+	interests?: Object;
 }
 
 interface UpdateObject {
@@ -12,6 +14,8 @@ interface UpdateObject {
 	name?: string;
 	description?: string;
 	job?: string;
+	experiences?: Array<Object>;
+	interests?: Object;
 }
 
 async function index() {
@@ -46,6 +50,12 @@ async function update(id: String, data: ProfileDTO) {
 	}
 	if (data.job) {
 		updateObject.job = data.job;
+	}
+	if (data.experiences) {
+		updateObject.experiences = data.experiences;
+	}
+	if (data.interests) {
+		updateObject.interests = data.interests;
 	}
 
 	await Profile.updateOne({ _id: id }, updateObject)
